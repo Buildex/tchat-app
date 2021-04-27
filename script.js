@@ -1,11 +1,9 @@
-const fs = require('fs')
 const host = 'https://buildex-chat-app.herokuapp.com'
-fs.exists('config.json', (exist) => {
-    if (exist) {
-        host = 'http://localhost:3000'
-    }
-})
-const socket = io(fs.read)
+if (window.location.hostname === 'http://localhost:3000') {
+    host = 'http://localhost:3000'
+}
+
+const socket = io(host)
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 const messageContainer = document.getElementById('message-container')
